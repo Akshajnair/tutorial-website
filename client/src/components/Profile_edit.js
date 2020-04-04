@@ -68,21 +68,6 @@ export default class Profile_edit extends Component {
         </div>
       )
   }
-  onDrop (picture) {
-    this.setState({
-      pictures: picture
-    })
-  }
-
-  fileselect(e){
-    
-  }
-
-  upload () {
-    dbcon.imageupload(this.state.pictures, function (response) {
-      console.log(response)
-    })
-  }
 
   profile_edit () {
     return (
