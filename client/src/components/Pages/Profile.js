@@ -17,7 +17,9 @@ export class Profile extends Component {
       profile: {},
       permission: '',
       loading: true,
-      id: window.location.pathname.split('/')[2]
+      id: window.location.pathname.split('/')[2],
+      baseurl:window.location.origin+"/",
+      // baseurl:"http://localhost:5000/uploads/"
     }
   }
   componentDidMount () {
@@ -35,16 +37,11 @@ export class Profile extends Component {
   }
 
   dp () {
+    if(this.state.profile.dplink==='true')
     return (
-      this.state.profile.dplink ||
-      window.location.origin + '/img/default_user.png'
+      this.state.baseurl+this.state.id+".jpg"
     )
-  }
-  cover () {
-    return (
-      this.state.profile.coverlink ||
-      window.location.origin + '/img/default_cover.png'
-    )
+    else return (window.location.origin + '/img/default_user.png')
   }
   edit () {
     if (this.state.permission === 'edit')

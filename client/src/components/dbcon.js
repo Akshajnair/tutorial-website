@@ -209,7 +209,6 @@ export class dbcon extends Component {
           linkedin: profile.linkedin,
           youtube: profile.youtube,
           dplink: profile.dplink,
-          coverlink: profile.coverlink
         }
       }
       console.log(options.data)
@@ -229,15 +228,16 @@ export class dbcon extends Component {
     }
   }
   imageupload (image, callback) {
+    const tokenid = sessionStorage.getItem('token')
     const fd = new FormData();
     fd.append('myImage',image)
     const options = {
       headers: { 'content-type': 'multipart/form-data' }
     }
     console.log(image)
-    axios.post(this.state.baseurl + '/images/add',fd,options)
+    axios.post(this.state.baseurl + '/images/add/'+tokenid,fd,options)
       .then(res => {
-        console.log(res)
+        window.location=window.location
       })
       .catch(error => {
         console.log(error)
