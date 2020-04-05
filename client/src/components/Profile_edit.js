@@ -75,11 +75,6 @@ export default class Profile_edit extends Component {
     })
   }
 
-  fileselect (e) {
-    e.preventDefault()
-    this.setState({ pictures: e.target.files[0] })
-  }
-
   upload (e) {
     e.preventDefault()
     dbcon.imageupload(this.state.pictures, function (response) {
