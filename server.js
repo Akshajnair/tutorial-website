@@ -26,12 +26,13 @@ const accountRouter = require('./routes/account')
 const tokenRouter = require('./routes/token')
 const coursesRouter = require('./routes/courses')
 const images = require('./routes/images')
-app.use(express.static('public'))
+
 
 app.use('/account', accountRouter)
 app.use('/token', tokenRouter)
 app.use('/tutorial', coursesRouter)
 app.use('/images', images)
+app.use(express.static('public'))
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
