@@ -1,12 +1,11 @@
 const router = require('express').Router()
 const multer = require('multer')
 const path = require('path')
-var a=0;
+var a = 0
 const storage = multer.diskStorage({
   destination: './public/uploads/',
   filename: function (req, file, cb) {
     cb(null, 'IMAGE-' + a + path.extname(file.originalname))
-    
   }
 })
 
@@ -21,7 +20,7 @@ router.route('/add').post((req, res) => {
       res.json(err)
     } else {
       res.json('IMAGE-' + a)
-      a=a+1;
+      a = a + 1
     }
   })
 })
