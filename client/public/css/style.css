@@ -876,18 +876,30 @@ h3 {
 .header-area .main-header-area .logo-img {
   text-align: center;
 }
+.header-area .main-header-area .logo-img img{
+  font-size: 3vmin;
+  text-align: center;
+  font-weight: lighter;
+  font-family: sans-serif;
+  color: #f3f4f8;
+  text-shadow: 2px 2px 4px #000000
+}
 
 @media (max-width: 767px) {
   /* line 29, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_header.scss */
   .header-area .main-header-area .logo-img {
     text-align: left;
   }
+  .header-area .main-header-area .logo-img img{
+    font-size: 5vmin;
+    padding-left: 10px;}
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 29, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_header.scss */
   .header-area .main-header-area .logo-img {
     text-align: left;
+    padding-left: 10px;
   }
 }
 
@@ -895,6 +907,7 @@ h3 {
   /* line 29, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_header.scss */
   .header-area .main-header-area .logo-img {
     text-align: left;
+    padding-left: 10px;
   }
 }
 
