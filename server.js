@@ -26,6 +26,7 @@ const accountRouter = require('./routes/account')
 const tokenRouter = require('./routes/token')
 const coursesRouter = require('./routes/courses')
 const images = require('./routes/images')
+app.use(express.static('public'))
 
 app.use('/account', accountRouter)
 app.use('/token', tokenRouter)
