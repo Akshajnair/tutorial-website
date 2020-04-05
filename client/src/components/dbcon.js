@@ -228,6 +228,21 @@ export class dbcon extends Component {
       }
     }
   }
+  imageupload (image, callback) {
+    const fd = new FormData();
+    fd.append('myImage',image)
+    const options = {
+      headers: { 'content-type': 'multipart/form-data' }
+    }
+    console.log(image)
+    axios.post(this.state.baseurl + '/images/add',fd,options)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 }
 
 const db = new dbcon()

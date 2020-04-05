@@ -17,8 +17,8 @@ export class Header extends Component {
                     <div className='logo-img'>
                       <Link to='/'>
                         <img
-                          src={window.location.origin + '/img/logo.png '}
-                          alt=''
+                          src={window.location.origin + '/img/loo.png '}
+                          alt='AI Skill Labs'
                         />
                       </Link>
                     </div>
