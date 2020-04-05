@@ -60,7 +60,6 @@ router.route('/update/:tokenid').post((req, res) => {
             accounts.profession = req.body.profession
             accounts.description = req.body.description
             accounts.dplink = req.body.dplink
-            accounts.coverlink = req.body.coverlink
             accounts.website = req.body.website
             accounts.twitter = req.body.twitter
             accounts.facebook = req.body.facebook
@@ -104,7 +103,6 @@ router.route('/user/:id').get((req, res) => {
         profession: accounts.profession,
         description: accounts.description,
         dplink: accounts.dplink,
-        coverlink: accounts.coverlink,
         website: accounts.website,
         twitter: accounts.twitter,
         facebook: accounts.facebook,
@@ -179,7 +177,6 @@ router.route('/token/:id').get((req, res) => {
               profession: accounts.profession,
               description: accounts.description,
               dplink: accounts.dplink,
-              coverlink: accounts.coverlink,
               website: accounts.website,
               twitter: accounts.twitter,
               facebook: accounts.facebook,
@@ -224,7 +221,6 @@ router.route('/profilefetch/:accountid/:tokenid').get((req, res) => {
                 profession: accounts.profession,
                 description: accounts.description,
                 dplink: accounts.dplink,
-                coverlink: accounts.coverlink,
                 website: accounts.website,
                 twitter: accounts.twitter,
                 facebook: accounts.facebook,
@@ -249,7 +245,6 @@ router.route('/profilefetch/:accountid/:tokenid').get((req, res) => {
           profession: accounts.profession,
           description: accounts.description,
           dplink: accounts.dplink,
-          coverlink: accounts.coverlink,
           website: accounts.website,
           twitter: accounts.twitter,
           facebook: accounts.facebook,

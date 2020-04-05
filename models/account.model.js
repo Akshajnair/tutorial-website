@@ -35,10 +35,6 @@ const accountSchema = new Schema(
       type: String,
       trim: true
     },
-    coverlink: {
-      type: String,
-      trim: true
-    },
     course: [
       {
         courseid: { type: String, trim: true },

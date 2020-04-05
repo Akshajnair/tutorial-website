@@ -19,7 +19,6 @@ export default class Profile_edit extends Component {
       linkedin: prop.linkedin,
       youtube: prop.youtube,
       dplink: prop.dplink,
-      coverlink: prop.coverlink,
       dpselected: null,
       coverselected: null,
       loading: false,
@@ -48,7 +47,6 @@ export default class Profile_edit extends Component {
       linkedin: this.state.linkedin,
       youtube: this.state.youtube,
       dplink: this.state.dplink,
-      coverlink: this.state.coverlink
     }
     e.preventDefault()
     dbcon.profileupdatewithtoken(profile, function (response) {
@@ -90,12 +88,6 @@ export default class Profile_edit extends Component {
           {this.errordisp()}
           <h3>Personal info</h3>
           <div class='text-center'>
-            <img
-              src={this.state.dplink}
-              class='avatar img-circle'
-              alt='avatar'
-              style={{ width: '200px', height: '200px' }}
-            />
             <h6>Upload a different photo...</h6>
             <form onSubmit={this.upload}>
               <ImageUploader
