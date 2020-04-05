@@ -28,7 +28,6 @@ export default class Profile_edit extends Component {
     }
     this.onDrop = this.onDrop.bind(this)
     this.upload = this.upload.bind(this)
-    this.fileselect = this.fileselect.bind(this)
   }
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
