@@ -8338,49 +8338,49 @@ h6 {
 }
 
 .ball:nth-child(1) {
-  background: #ffffff;
+  background: #603dd9;
   -webkit-animation: right 1s infinite ease-in-out;
   -moz-animation: right 1s infinite ease-in-out;
   animation: right 1s infinite ease-in-out;
 }
 
 .ball:nth-child(2) {
-  background: #ffffff;
+  background: #603dd9;
   -webkit-animation: left 1.1s infinite ease-in-out;
   -moz-animation: left 1.1s infinite ease-in-out;
   animation: left 1.1s infinite ease-in-out;
 }
 
 .ball:nth-child(3) {
-  background: #ffffff;
+  background: #603dd9;
   -webkit-animation: right 1.2s infinite ease-in-out;
   -moz-animation: right 1.2s infinite ease-in-out;
   animation: right 1.2s infinite ease-in-out;
 }
 
 .ball:nth-child(4) {
-  background: #ffffff;
+  background: #603dd9;
   -webkit-animation: left 1.3s infinite ease-in-out;
   -moz-animation: left 1.3s infinite ease-in-out;
   animation: left 1.3s infinite ease-in-out;
 }
 
 .ball:nth-child(5) {
-  background: #ffffff;
+  background: #603dd9;
   -webkit-animation: right 1.4s infinite ease-in-out;
   -moz-animation: right 1.4s infinite ease-in-out;
   animation: right 1.4s infinite ease-in-out;
 }
 
 .ball:nth-child(6) {
-  background: #ffffff;
+  background: #603dd9;
   -webkit-animation: left 1.5s infinite ease-in-out;
   -moz-animation: left 1.5s infinite ease-in-out;
   animation: left 1.5s infinite ease-in-out;
 }
 
 .ball:nth-child(7) {
-  background: #ffffff;
+  background: #603dd9;
   -webkit-animation: right 1.6s infinite ease-in-out;
   -moz-animation: right 1.6s infinite ease-in-out;
   animation: right 1.6s infinite ease-in-out;
@@ -8458,11 +8458,7 @@ h6 {
   }
 }
 .loaderpage {
-  background-image: linear-gradient(
-    to right,
-    rgb(165, 78, 235),
-    rgb(60, 53, 206)
-  );
+  background-color: #fff;
   height: 100vh;
   margin: 0;
   background-attachment: fixed;
@@ -8475,7 +8471,7 @@ h6 {
   margin: 30vh auto;
 }
 .loadertext {
-  color: white;
+  color: #603dd9;
   font-size: 5vmin;
   font-weight: bold;
   font-family: 'Segoe UI';
@@ -9066,11 +9062,7 @@ h6 {
   font-size: 0;
   text-align: center;
   position: absolute;
-  margin-top: 30%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
 }
 .social-btns .btn {
   display: inline-block;
@@ -9123,10 +9115,6 @@ h6 {
   align-items: center;
   background: #eee;
   text-align: center;
-  padding: 0 2em;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 168px;
   margin-top: 0px;
   z-index: 13;
 }
@@ -9136,18 +9124,11 @@ h6 {
   }
 }
 .et-hero-tabs-container {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  flex-direction: row;
-  position: absolute;
   bottom: 0;
   width: 100%;
   height: 70px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   background: #fff;
-  z-index: 10;
 }
 .et-hero-tabs-container--top {
   position: fixed;
@@ -9167,11 +9148,13 @@ h6 {
   letter-spacing: 0.1rem;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  border-style: none none solid none;
+   border-color: #8145e3;
   font-size: 1.5rem;
 }
 .et-hero-tab:hover {
   color: white;
-  background: rgba(102, 177, 241, 0.8);
+  background: #8145e3;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
@@ -9209,16 +9192,23 @@ h6 {
   background-position: center;
 }
 .profile_sidebar {
+  margin-bottom: 100px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 120px;
 }
-.profile_details_banner .user_thumb img {
-  width: 30vmin;
-  height: 30vmin;
+.profile-container{
+  margin-top:102px;
+}
+.user_thumb img {
+  width: 100%;
+  height: 40vmin;
   margin-top: 7vmin;
   align-items: center;
-  border-radius: 50px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   margin-right: 4rem;
@@ -9227,33 +9217,37 @@ h6 {
 }
 @media (max-width: 767px) {
   /* line 116, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_popular_courses.scss */
-  .profile_details_banner .user_thumb img {
-    width: 25vmin;
-    height: 25vmin;
-    margin-top: 3vmin;
+  .user_thumb img {
+    width: 20vmin;
+    height: 20vmin;
+    border-radius: 5px;
   }
-  .profile_details_banner {
-    height: 50vw;
+  .profile_text{
+    margin-top: -120px;
+    float: left;
+    margin-left: 25vmin;
+
+  }
+  .profile-container{
+    margin-top:57px;
   }
 }
-.profile_details_banner .profile_text h1 {
+.profile_text h1 {
   margin: 8vmin auto 0vmin;
-  font-size: 10vmin;
-  color: #fff;
+  text-align: left;
+  font-size: 5vmin;
   font-weight: 400;
   font-family: 'Poppins', sans-serif;
-  text-shadow: 5px 5px 10px #000000;
   text-transform: uppercase;
 }
-.profile_details_banner .profile_text h4 {
-  font-size: 5vmin;
-  color: #fff;
+.profile_text h4 {
+  font-size: 2vmin;
+  text-align: left;
   margin-top: 0px;
   font-weight: 400;
   font-family: 'Poppins', sans-serif;
-  text-shadow: 5px 5px 10px #000000;
 }
-.profile_details_banner .profile_text {
+.profile_text {
   height: 100%;
   top: 0px;
 }
@@ -9264,10 +9258,10 @@ h6 {
   .profile_details {
     padding-top: 70px;
   }
-  .profile_details_banner .profile_text h1 {
-    font-size: 6vmin;
+  .profile_text h1 {
+    font-size: 26px;
   }
-  .profile_details_banner .profile_text h4 {
+  .profile_text h4 {
     font-size: 3vmin;
   }
 }
@@ -9668,3 +9662,4 @@ width: 50vw;
     display: none;
   }
 }
+

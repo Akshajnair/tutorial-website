@@ -7,8 +7,8 @@ export class dbcon extends Component {
     super(props)
 
     this.state = {
-      baseurl: 'http://localhost:5000',
-      // baseurl: window.location.origin,
+      // baseurl: 'http://localhost:5000',
+      baseurl: window.location.origin,
       prevlink: ''
     }
   }
@@ -230,15 +230,12 @@ export class dbcon extends Component {
   }
   imageupload (image, callback) {
     const fd = new FormData();
-    fd.append('image',image[0])
+    fd.append('myImage',image)
     const options = {
-      url: this.state.baseurl + '/images/add',
-      method: 'POST',
-      data: fd,
       headers: { 'content-type': 'multipart/form-data' }
     }
-    console.log(image[0])
-    axios(options)
+    console.log(image)
+    axios.post(this.state.baseurl + '/images/add',fd,options)
       .then(res => {
         console.log(res)
       })

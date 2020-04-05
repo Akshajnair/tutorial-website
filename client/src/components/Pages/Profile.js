@@ -19,7 +19,6 @@ export class Profile extends Component {
       loading: true,
       id: window.location.pathname.split('/')[2]
     }
-    
   }
   componentDidMount () {
     var this1 = this
@@ -54,7 +53,7 @@ export class Profile extends Component {
           <Route
             path={'/profile/' + this.state.id + '/edit'}
             render={props => {
-              return <Profile_edit profile={this.state.profile}/>
+              return <Profile_edit profile={this.state.profile} />
             }}
           />
           <Route
@@ -69,22 +68,13 @@ export class Profile extends Component {
   profile () {
     return (
       <div>
-        <div
-          className='profile_details_banner'
-          style={{
-            backgroundImage: 'url(' + this.cover() + ')'
-          }}
-        >
-          <div className='container'>
-            <div className='row'>
-              <div className='col-xl-4 col-xs-4'>
-                <div className='profile_sidebar'>
-                  <div className='user_thumb'>
-                    <img src={this.dp()} alt='' />
-                  </div>
+        <div className='container'>
+          <div className='row profile-container'>
+            <div className='col-xl-4'>
+              <div className='profile_sidebar'>
+                <div className='user_thumb'>
+                  <img src={this.dp()} alt='' />
                 </div>
-              </div>
-              <div className='col-xl-8 col-xs-8'>
                 <div className='profile_text'>
                   <h1>
                     {this.state.profile.firstname +
@@ -92,31 +82,34 @@ export class Profile extends Component {
                       this.state.profile.lastname}
                   </h1>
                   <h4>{this.state.profile.profession}</h4>
-                  <Socialbtn profile={this.state.profile} />
+
+                  <h4>{this.state.profile.description}</h4>
                 </div>
+                <Socialbtn profile={this.state.profile} />
+              </div>
+            </div>
+            <div className='col-xl-8'>
+              <div>
+                <Router>
+                  <Profile_navbar state={this.state} />
+                  <Route
+                    exact
+                    path={'/profile/' + this.state.id + '/'}
+                    render={props => {
+                      return <Loader />
+                    }}
+                  />
+                  <Route
+                    path={'/profile/' + this.state.id + '/course'}
+                    render={props => {
+                      return <Profile_course />
+                    }}
+                  />
+                  {this.edit()}
+                </Router>
               </div>
             </div>
           </div>
-        </div>
-        <div className='profile_details'>
-          <Router>
-            <Profile_navbar state={this.state} />
-
-            <Route
-              exact
-              path={'/profile/' + this.state.id + '/'}
-              render={props => {
-                return <Loader />
-              }}
-            />
-            <Route
-              path={'/profile/' + this.state.id + '/course'}
-              render={props => {
-                return <Profile_course />
-              }}
-            />
-            {this.edit()}
-          </Router>
         </div>
       </div>
     )
