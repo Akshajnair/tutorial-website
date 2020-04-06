@@ -26,7 +26,7 @@ export default class Profile_edit extends Component {
       pictures: null
     }
     this.onDrop = this.onDrop.bind(this)
-    this.upload = this.upload.bind(this)
+    // this.upload = this.upload.bind(this)
   }
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
@@ -46,7 +46,7 @@ export default class Profile_edit extends Component {
       twitter: this.state.twitter,
       linkedin: this.state.linkedin,
       youtube: this.state.youtube,
-      dplink: this.state.dplink,
+      dplink: this.state.dplink
     }
     e.preventDefault()
     dbcon.profileupdatewithtoken(profile, function (response) {
@@ -67,42 +67,30 @@ export default class Profile_edit extends Component {
       )
   }
   onDrop (picture) {
-    this.setState({
-      pictures: picture[0]
+    const this1=this
+    this.setState({ loading: true })
+    dbcon.imageupload(picture[0], function (response) {
+      console.log(response)
+      this1.setState({status:"avatar changed and will be adjusted automatically.. refresh to see change"})
+      // window.location=window.location
     })
   }
 
-  upload (e) {
-    e.preventDefault()
-    dbcon.imageupload(this.state.pictures, function (response) {
-      console.log(response)
-    })
-  }
+  // upload (e) {
+  //   e.preventDefault()
+  //   dbcon.imageupload(this.state.pictures, function (response) {
+  //     console.log(response)
+  //   })
+  // }
 
   profile_edit () {
     return (
       <div>
         <h1>Edit Profile</h1>
-
         <div class='personal-info'>
           {this.errordisp()}
           <h3>Personal info</h3>
-          <div class='text-center'>
-            <h6>Upload a different photo...</h6>
-            <form onSubmit={this.upload}>
-              <ImageUploader
-                withIcon={true}
-                buttonText='Choose images'
-                onChange={this.onDrop}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                maxFileSize={5242880}
-                withPreview={true}
-                singleImage={true}
-              />
-              <button type='submit'>UPLOAD</button>
-            </form>
-          </div>
-
+          <hr/>
           <form
             class='form-horizontal'
             role='form'
@@ -263,10 +251,32 @@ export default class Profile_edit extends Component {
               <div class='col-md-8'>
                 <input type='submit' class='btn btn-primary' value='Save' />
                 <span></span>
-                <input type='reset' class='btn btn-default' value='Cancel' />
+                <input type='reset' class='btn btn-primary' value='Cancel' />
               </div>
             </div>
           </form>
+          <div class='text-center'>
+            <h3>Change Avatar</h3>
+            <hr/>
+            <form onSubmit={this.upload}>
+              <div className='imageupload'>
+              <ImageUploader
+                withIcon={false}
+                buttonText='Upload'
+                onChange={this.onDrop}
+                imgExtension={['.jpg', '.jpeg', '.png']}
+                maxFileSize={5242880}
+                singleImage={true}
+                withLabel={true}
+                label={'max image size : 5MB'}
+                labelStyles={{fontSize:'20px'}}
+              />
+              </div>
+              {/* <button type='submit' class="btn btn-primary">UPLOAD</button> */}
+              
+              
+            </form>
+          </div>
         </div>
       </div>
     )

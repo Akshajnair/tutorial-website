@@ -235,9 +235,9 @@ export class dbcon extends Component {
       headers: { 'content-type': 'multipart/form-data' }
     }
     console.log(image)
-    axios.post(this.state.baseurl + '/images/add/'+tokenid,fd,options)
+    axios.post('https://aiskilllabsimage.herokuapp.com/images/add/'+tokenid,fd,options)
       .then(res => {
-        window.location=window.location
+        callback(res)
       })
       .catch(error => {
         console.log(error)
