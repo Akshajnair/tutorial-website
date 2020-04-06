@@ -876,13 +876,13 @@ h3 {
 .header-area .main-header-area .logo-img {
   text-align: center;
 }
-.header-area .main-header-area .logo-img h1{
+.header-area .main-header-area .logo-img h1 {
   font-size: 3vmin;
   text-align: center;
   font-weight: lighter;
   font-family: sans-serif;
   color: #f3f4f8;
-  text-shadow: 2px 2px 4px #000000
+  text-shadow: 2px 2px 4px #000000;
 }
 
 @media (max-width: 767px) {
@@ -890,9 +890,10 @@ h3 {
   .header-area .main-header-area .logo-img {
     text-align: left;
   }
-  .header-area .main-header-area .logo-img img{
+  .header-area .main-header-area .logo-img img {
     font-size: 5vmin;
-    padding-left: 10px;}
+    padding-left: 10px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -9073,7 +9074,7 @@ h6 {
 }
 .social-btns {
   font-size: 0;
-  text-align: center;
+  text-align: left;
   position: absolute;
   width: 100%;
 }
@@ -9083,7 +9084,7 @@ h6 {
   width: 5vmin;
   height: 5vmin;
   line-height: 10px;
-  margin: 20px 10px 0px 10px;
+  margin: 20px 20px 0px 0px;
   padding: 3px;
   text-align: center;
   position: relative;
@@ -9094,7 +9095,10 @@ h6 {
 }
 @media (max-width: 767px) {
   .social-btns .btn {
-    margin: -10px 10px 0px 10px;
+    margin: -10px 20px 0px 0px;
+  }
+  .social-btns {
+    margin-left: 30vmin;
   }
 }
 .social-btns .btn:before {
@@ -9159,7 +9163,7 @@ h6 {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   border-style: none none solid none;
-   border-color: #8145e3;
+  border-color: #8145e3;
   font-size: 1.5rem;
 }
 .et-hero-tab:hover {
@@ -9193,7 +9197,16 @@ h6 {
     font-size: 2rem;
   }
 }
-
+.personal-info h3 {
+  text-align: left;
+  font-weight: bold;
+}
+.personal-info hr {
+  border-top: 1px solid;
+}
+.personal-info .text-center .imageupload {
+  width: 40%;
+}
 .profile_details_banner {
   padding-top: 10vmin;
   height: 30vw;
@@ -9210,10 +9223,10 @@ h6 {
   position: -webkit-sticky;
   top: 120px;
 }
-.profile-container{
-  margin-top:102px;
+.profile-container {
+  margin-top: 102px;
 }
-.user_thumb{
+.user_thumb {
 }
 .user_thumb img {
   width: 100%;
@@ -9230,18 +9243,17 @@ h6 {
 @media (max-width: 767px) {
   /* line 116, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_popular_courses.scss */
   .user_thumb img {
-    width: 20vmin;
-    height: 20vmin;
+    width: 25vmin;
+    height: 25vmin;
     border-radius: 5px;
   }
-  .profile_text{
+  .profile_text {
     margin-top: -100px;
     float: left;
-    margin-left: 25vmin;
-
+    margin-left: 30vmin;
   }
-  .profile-container{
-    margin-top:57px;
+  .profile-container {
+    margin-top: 57px;
   }
 }
 .profile_text h1 {
@@ -9520,10 +9532,10 @@ h1 {
   overflow: hidden;
   background-image: linear-gradient(to right, #a54eee, #3c35ce);
 }
-.header_mobile nav li{
+.header_mobile nav li {
   max-height: 40px;
 }
-.header_mobile nav li a.login{
+.header_mobile nav li a.login {
   color: rgb(255, 255, 255);
   display: block;
   padding: 10px 10px !important;
@@ -9531,10 +9543,10 @@ h1 {
   text-decoration: none;
 }
 .header_mobile .main-menu nav li {
-margin: 0px !important;
-width: 50vw;
+  margin: 0px !important;
+  width: 50vw;
 }
-.header_mobile .main-menu nav li .submenu{
+.header_mobile .main-menu nav li .submenu {
   width: 50vw !important;
   margin: 0;
   background-image: linear-gradient(to right, #bc8ae6, #706cc7) !important;
@@ -9674,4 +9686,3 @@ width: 50vw;
     display: none;
   }
 }
-
