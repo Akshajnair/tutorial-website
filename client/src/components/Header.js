@@ -16,10 +16,11 @@ export class Header extends Component {
                   <div className='col-xl-2 col-lg-2'>
                     <div className='logo-img'>
                       <Link to='/'>
-                        <img
+                        {/* <img
                           src={window.location.origin + '/img/loo.png '}
                           alt='AI Skill Labs'
-                        />
+                        /> */}
+                        <h1>AI Skill Labs</h1>
                       </Link>
                     </div>
                   </div>

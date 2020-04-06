@@ -876,7 +876,7 @@ h3 {
 .header-area .main-header-area .logo-img {
   text-align: center;
 }
-.header-area .main-header-area .logo-img img{
+.header-area .main-header-area .logo-img h1{
   font-size: 3vmin;
   text-align: center;
   font-weight: lighter;
@@ -9083,7 +9083,7 @@ h6 {
   width: 5vmin;
   height: 5vmin;
   line-height: 10px;
-  margin: 30px 10px;
+  margin: 20px 10px 0px 10px;
   padding: 3px;
   text-align: center;
   position: relative;
@@ -9092,14 +9092,11 @@ h6 {
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
   opacity: 0.99;
 }
-/* @media (max-width: 767px) {
+@media (max-width: 767px) {
   .social-btns .btn {
-    width: 50px;
-  height: 50px;
-  line-height: 90px;
-  margin: 0 10px;
+    margin: -10px 10px 0px 10px;
   }
-} */
+}
 .social-btns .btn:before {
   content: '';
   width: 120%;
@@ -9140,7 +9137,7 @@ h6 {
   display: flex;
   bottom: 0;
   width: 100%;
-  height: 70px;
+  height: 40px;
   background: #fff;
 }
 .et-hero-tabs-container--top {
@@ -9205,7 +9202,7 @@ h6 {
   background-position: center;
 }
 .profile_sidebar {
-  margin-bottom: 100px;
+  margin-bottom: 30px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
