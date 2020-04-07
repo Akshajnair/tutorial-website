@@ -93,8 +93,8 @@ export default class Signup extends Component {
               text='dfgdfg'
               required
             />
-            
-          </label>I agree to terms and Privacy Policy
+            I agree to terms and Privacy Policy
+          </label>
         </div>
       </div>
     )

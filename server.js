@@ -25,7 +25,7 @@ connection.once('open', () => {
 const accountRouter = require('./routes/account')
 const tokenRouter = require('./routes/token')
 const coursesRouter = require('./routes/courses')
-const images = require('./routes/images')
+const images = require('./routes/imageup')
 
 
 app.use('/account', accountRouter)
