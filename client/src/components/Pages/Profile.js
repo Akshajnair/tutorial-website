@@ -18,7 +18,7 @@ export class Profile extends Component {
       permission: '',
       loading: true,
       id: window.location.pathname.split('/')[2],
-      baseurl:"https://aiskilllabsimage.herokuapp.com/uploads/",
+      baseurl:"https://aiskilllabsimages.s3.amazonaws.com/userimg/",
     }
   }
   componentDidMount () {

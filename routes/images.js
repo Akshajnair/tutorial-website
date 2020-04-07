@@ -2,6 +2,7 @@ const router = require('express').Router()
 const multer = require('multer')
 const path = require('path')
 const tinify = require('tinify')
+
 tinify.key = 'xhDlyYcvStBdzR4z2knGpmN1SX6Kb8XW'
 let Token = require('../models/token.model')
 let Account = require('../models/account.model')
@@ -44,11 +45,17 @@ router.route('/add/:tokenid').post((req, res) => {
         } else {
           const source = tinify.fromFile(baseurl + fname)
           const resized = source.resize({
-            method: "cover",
+            method: 'cover',
             width: 350,
             height: 350
-          });
-          resized.toFile(baseurl + accountid + '.jpg')
+          })
+          source.store({
+            service: 's3',
+            aws_access_key_id: 'AKIAIQ4UB3YPDELJODDQ',
+            aws_secret_access_key: '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',
+            region: 'us-east-1',
+            path: 'aiskilllabsimages/userimg/'+accountid+'.jpg'
+          })
           Account.findById(token.accountid)
             .then(accounts => {
               accounts.dplink = true
