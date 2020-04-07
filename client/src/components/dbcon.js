@@ -7,8 +7,8 @@ export class dbcon extends Component {
     super(props)
 
     this.state = {
-      // baseurl: 'http://localhost:5000',
-      baseurl: window.location.origin,
+      baseurl: 'http://localhost:5000',
+      // baseurl: window.location.origin,
       prevlink: ''
     }
   }
@@ -235,7 +235,7 @@ export class dbcon extends Component {
       headers: { 'content-type': 'multipart/form-data' }
     }
     console.log(image)
-    axios.post('https://aiskilllabsimage.herokuapp.com/images/add/'+tokenid,fd,options)
+    axios.post(this.state.baseurl + '/images/add/'+tokenid,fd,options)
       .then(res => {
         callback(res)
       })
