@@ -15,6 +15,7 @@ import Subscribe from './components/Subscribe'
 import dbcon from './components/dbcon'
 import Loader from './components/Loader'
 import Login from './components/Login'
+import Signup from './components/Signup'
 
 class App extends Component {
   constructor (props) {
@@ -62,6 +63,12 @@ class App extends Component {
             path='/login'
             render={props => {
               return <Login />
+            }}
+          />
+          <Route
+            path='/signup'
+            render={props => {
+              return <Signup />
             }}
           />
           <Route
