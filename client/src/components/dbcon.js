@@ -208,7 +208,7 @@ export class dbcon extends Component {
           twitter: profile.twitter,
           linkedin: profile.linkedin,
           youtube: profile.youtube,
-          dplink: profile.dplink,
+          dplink: profile.dplink
         }
       }
       console.log(options.data)
