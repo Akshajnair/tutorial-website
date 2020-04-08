@@ -68,11 +68,18 @@ router.route('/add/:tokenid').post((req, res) => {
       accountid = token.accountid
       upload(req, res, function (err) {
         if (err) {
-          return res.status(422).send({
+          res.status(422).send({
             errors: [{ title: 'File Upload Error', detail: err.message }]
           })
         }
-        return res.json({ imageUrl: req.file.location })
+        Account.findById(token.accountid)
+          .then(accounts => {
+            accounts.dplink = true
+            accounts.save().catch(err => res.json('invalid'))
+            res.json({ imageUrl: req.file.location })
+          })
+          .catch(err => res.json('invalid'))
+        res.json(accountid)
       })
 
       // upload(req, res, err => {
