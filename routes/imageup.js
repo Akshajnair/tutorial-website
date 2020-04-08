@@ -1,12 +1,10 @@
 const router = require('express').Router()
 const multer = require('multer')
-const path = require('path')
-const tinify = require('tinify')
 var aws = require('aws-sdk')
 var multerS3 = require('multer-s3')
 
-tinify.key = 'xhDlyYcvStBdzR4z2knGpmN1SX6Kb8XW'
-// secretAccessKey: process.env.ATLAS_URI
+const secretAccessKey=process.env.AWSSECRETKEY
+const accessKeyId=process.env.AWSACCESSKEYID
 
 let Token = require('../models/token.model')
 let Account = require('../models/account.model')
@@ -18,17 +16,8 @@ aws.config.update({
 })
 
 var accountid = ''
-var fname = ''
-// const baseurl = './public/uploads/'
-const s3 = new aws.S3()
 
-// const storage = multer.diskStorage({
-//   destination: './public/uploads/',
-//   filename: function (req, file, cb) {
-//     cb(null, accountid + path.extname(file.originalname))
-//     fname = accountid + path.extname(file.originalname)
-//   }
-// })
+const s3 = new aws.S3()
 
 var upload = multer({
   storage: multerS3({
@@ -44,11 +33,6 @@ var upload = multer({
     }
   })
 }).single('myImage')
-
-// const upload = multer({
-//   storage: storage,
-//   limits: { fileSize: 5242880 }
-// }).single('myImage')
 
 router.route('/add/:tokenid').post((req, res) => {
   Token.findById(req.params.tokenid).then(token => {
@@ -79,23 +63,7 @@ router.route('/add/:tokenid').post((req, res) => {
             res.json({ imageUrl: req.file.location })
           })
           .catch(err => res.json('invalid'))
-        res.json(accountid)
       })
-
-      // upload(req, res, err => {
-      //   if (err) {
-      //     res.json(err)
-      //   } else {
-
-      //     Account.findById(token.accountid)
-      //       .then(accounts => {
-      //         accounts.dplink = true
-      //         accounts.save().catch(err => res.json('invalid'))
-      //       })
-      //       .catch(err => res.json('invalid'))
-      //     res.json(accountid)
-      //   }
-      // })
     }
   })
 })

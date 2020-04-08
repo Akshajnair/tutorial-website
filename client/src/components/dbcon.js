@@ -229,15 +229,24 @@ export class dbcon extends Component {
   }
   imageupload (image, callback) {
     const tokenid = sessionStorage.getItem('token')
-    const fd = new FormData();
-    fd.append('myImage',image)
+    const fd = new FormData()
+    fd.append('myImage', image)
     const options = {
       headers: { 'content-type': 'multipart/form-data' }
     }
     console.log(image)
-    axios.post(this.state.baseurl + '/images/add/'+tokenid,fd,options)
+    axios
+      .post(this.state.baseurl + '/images/add/' + tokenid, fd, options)
       .then(res => {
-        callback(res)
+        
+        axios
+          .post(this.state.baseurl + '/imagescompress/' + window.location.pathname.split('/')[2],{})
+          .then(res => {
+            callback(res)
+          })
+          .catch(error => {
+            console.log(error)
+          })
       })
       .catch(error => {
         console.log(error)
