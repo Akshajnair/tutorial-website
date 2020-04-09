@@ -31,7 +31,7 @@ export default class Signup extends Component {
     this.step1next = this.step1next.bind(this)
   }
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({ [e.target.name]: String(e.target.value).toLowerCase() })
     if (e.target.name === 'email') {
       this.onemailchange(e.target.value)
     }
