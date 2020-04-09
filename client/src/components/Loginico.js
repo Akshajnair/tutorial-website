@@ -3,10 +3,15 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 import dbcon from './dbcon'
 
 export class Loginico extends Component {
+  state={
+    logoutload:''
+  }
   logouthandler = e => {
+    this.setState({logoutload:'fa fa-circle-o-notch fa-spin'})
     e.preventDefault()
     dbcon.logout(function (res) {
-      window.location='/'
+      console.log(res)
+      window.location=window.location.origin      
     })
   }
   onclickhandel(){
@@ -44,7 +49,7 @@ export class Loginico extends Component {
                   </li>
                   <li>
                     <a href='' onClick={this.logouthandler}>
-                      Logout
+                    Logout  <i className={this.state.logoutload}></i>
                     </a>
                   </li>
                 </ul>

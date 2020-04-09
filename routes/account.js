@@ -68,7 +68,7 @@ router.route('/update/:tokenid').post((req, res) => {
             accounts
               .save()
               .then(() => res.json('updated'))
-              .catch(err => res.json("invalid"))
+              .catch(err => res.json('invalid'))
           })
           .catch(err => res.json('invalid'))
       }
@@ -123,7 +123,14 @@ router.route('/trainer/:id').get((req, res) => {
     })
     .catch(err => res.status(400).json('Error: ' + err))
 })
-
+router.route('/emailcheck/:email').get((req, res) => {
+  Account.findOne({ email: req.params.email })
+    .then(accounts => {
+      if (accounts.email === req.params.email) res.json({ res: 'exist' })
+      else res.json({ res: 'notexist' })
+    })
+    .catch(err => res.json({ res: 'notexist' }))
+})
 router.route('/email/:email/:pass').get((req, res) => {
   Account.findOne({ email: req.params.email })
     .then(accounts => {
@@ -143,7 +150,7 @@ router.route('/email/:email/:pass').get((req, res) => {
         res.json({ res: 'wrong' })
       }
     })
-    .catch(err => res.status(400).json('Error: ' + err))
+    .catch(err => res.json({ res: 'wrong' }))
 })
 
 router.route('/:id').delete((req, res) => {

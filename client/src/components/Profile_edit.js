@@ -26,7 +26,6 @@ export default class Profile_edit extends Component {
       pictures: null
     }
     this.onDrop = this.onDrop.bind(this)
-    // this.upload = this.upload.bind(this)
   }
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
@@ -67,21 +66,17 @@ export default class Profile_edit extends Component {
       )
   }
   onDrop (picture) {
-    const this1=this
     this.setState({ loading: true })
+    const this1 = this
     dbcon.imageupload(picture[0], function (response) {
       console.log(response)
-      this1.setState({status:"avatar changed and will be adjusted automatically.. refresh to see change"})
-      // window.location=window.location
+      this1.setState({
+        status:
+          'avatar changed and will be adjusted automatically.. refresh to see change'
+      })
+      window.location=window.location
     })
   }
-
-  // upload (e) {
-  //   e.preventDefault()
-  //   dbcon.imageupload(this.state.pictures, function (response) {
-  //     console.log(response)
-  //   })
-  // }
 
   profile_edit () {
     return (
@@ -90,7 +85,7 @@ export default class Profile_edit extends Component {
         <div class='personal-info'>
           {this.errordisp()}
           <h3>Personal info</h3>
-          <hr/>
+          <hr />
           <form
             class='form-horizontal'
             role='form'
@@ -257,24 +252,23 @@ export default class Profile_edit extends Component {
           </form>
           <div class='text-center'>
             <h3>Change Avatar</h3>
-            <hr/>
+            <hr />
             <form onSubmit={this.upload}>
               <div className='imageupload'>
-              <ImageUploader
-                withIcon={false}
-                buttonText='Upload'
-                onChange={this.onDrop}
-                imgExtension={['.jpg', '.jpeg', '.png']}
-                maxFileSize={5242880}
-                singleImage={true}
-                withLabel={true}
-                label={'max image size : 5MB'}
-                labelStyles={{fontSize:'20px'}}
-              />
+                <ImageUploader
+                  withIcon={false}
+                  buttonText='Upload'
+                  buttonClassName={''}
+                  onChange={this.onDrop}
+                  imgExtension={['.jpg', '.jpeg', '.png']}
+                  maxFileSize={5242880}
+                  singleImage={true}
+                  withLabel={true}
+                  label={'max image size : 5MB'}
+                  labelStyles={{ fontSize: '20px' }}
+                />
               </div>
               {/* <button type='submit' class="btn btn-primary">UPLOAD</button> */}
-              
-              
             </form>
           </div>
         </div>
@@ -283,7 +277,7 @@ export default class Profile_edit extends Component {
   }
 
   render () {
-    if (this.loading === true) return <Loader />
+    if (this.state.loading === true) return <Loader />
     return this.profile_edit()
   }
 }

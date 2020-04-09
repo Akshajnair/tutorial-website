@@ -20,15 +20,22 @@ export class dbcon extends Component {
     console.log(this.state.prevlink)
     callback(this.state.prevlink)
   }
+
   // called by app.js for checking the token saved in browser
   token (callback) {
     var this1 = this
     //for Session
     const tokenid = sessionStorage.getItem('token') || ''
     if (tokenid) {
-      this.fetchuserinfobytoken(tokenid, function (result) {
-        callback(result)
-      })
+      if ((localStorage.getItem('token') || '') === '') {
+        localStorage.removeItem('token')
+        sessionStorage.removeItem('token')
+        window.location = window.location.origin
+      } else {
+        this.fetchuserinfobytoken(tokenid, function (result) {
+          callback(result)
+        })
+      }
     } else {
       //for local
       const tokenid = localStorage.getItem('token') || ''
@@ -94,6 +101,18 @@ export class dbcon extends Component {
         console.log(error)
       })
   }
+
+  emailcheck (email, callback) {
+    axios
+      .get(this.state.baseurl + '/account/emailcheck/' + email)
+      .then(res => {
+        if (res.data.res === 'notexist') callback('notexist')
+        else if (res.data.res === 'exist')callback('exist')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
   //Signup function... called by on signup handler in header.js
   signup (userinfo, callback) {
     const options = {
@@ -112,9 +131,9 @@ export class dbcon extends Component {
     }
     console.log(options.data)
     if (
-      userinfo.firstname.length < 2 ||
-      userinfo.lastname.length < 2 ||
-      userinfo.email.length < 2
+      userinfo.firstname.length < 3 ||
+      userinfo.lastname.length < 3 ||
+      userinfo.email.length < 5
     )
       callback('fill all the fields')
     else if (userinfo.password.length < 6) {
@@ -134,16 +153,20 @@ export class dbcon extends Component {
   }
   //logout function called in loginico.js
   logout (callback) {
-    const tokenid = localStorage.getItem('token')
-    localStorage.removeItem('token')
-    sessionStorage.removeItem('token')
+    const tokenid =
+      localStorage.getItem('token') || localStorage.getItem('token')
     axios
       .post(this.state.baseurl + '/token/update/' + tokenid)
       .then(res => {
+        localStorage.removeItem('token')
+        sessionStorage.removeItem('token')
         callback('logout')
       })
       .catch(error => {
         console.log(error)
+        localStorage.removeItem('token')
+        sessionStorage.removeItem('token')
+        window.location = window.location.origin
       })
   }
   //fetch course on the basis of id
@@ -171,7 +194,8 @@ export class dbcon extends Component {
   }
   // fetch course on with token id and url
   profilefetchwithurl (accountid, callback) {
-    const tokenid = sessionStorage.getItem('token') || 'null'
+    const tokenid =
+      sessionStorage.getItem('token') || localStorage.getItem('token') || 'null'
     axios
       .get(
         this.state.baseurl +
@@ -188,7 +212,8 @@ export class dbcon extends Component {
       })
   }
   profileupdatewithtoken (profile, callback) {
-    const tokenid = sessionStorage.getItem('token') || 'null'
+    const tokenid =
+      sessionStorage.getItem('token') || localStorage.getItem('token') || 'null'
     if (!(tokenid === 'null')) {
       const options = {
         url: this.state.baseurl + '/account/update/' + tokenid,
@@ -228,7 +253,8 @@ export class dbcon extends Component {
     }
   }
   imageupload (image, callback) {
-    const tokenid = sessionStorage.getItem('token')
+    const tokenid =
+      sessionStorage.getItem('token') || localStorage.getItem('token')
     const fd = new FormData()
     fd.append('myImage', image)
     const options = {
@@ -238,9 +264,13 @@ export class dbcon extends Component {
     axios
       .post(this.state.baseurl + '/images/add/' + tokenid, fd, options)
       .then(res => {
-        
         axios
-          .post(this.state.baseurl + '/imagescompress/' + window.location.pathname.split('/')[2],{})
+          .post(
+            this.state.baseurl +
+              '/imagescompress/' +
+              window.location.pathname.split('/')[2],
+            {}
+          )
           .then(res => {
             callback(res)
           })

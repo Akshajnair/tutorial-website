@@ -9699,6 +9699,8 @@ h1 {
   line-height: 0.9;
   background-color: white;
   text-align: left;
+  position: relative;
+  font-family: 'Google Sans', arial, sans-serif;
 }
 .signupform .create {
   text-align: left;
@@ -9709,7 +9711,7 @@ h1 {
   line-height: 32px;
   padding-top: 16px;
 }
-.signupform input{
+/* .signupform input{
   width: 85%;
   height:40px;
   margin: 20px 0px 0px 20px;
@@ -9717,25 +9719,8 @@ h1 {
   font-family: 'Google Sans', arial, sans-serif;
   border-radius: 3px;
 }
-.signupinput {
-  border-style: none none solid none;
-  border-width: 2px;
-  border-color: rgba(54, 54, 54, 0.637);
-  
-}
-.signupinputwarn {
-  border-style: none none solid none;
-  border-width: 4px;
-  border-color: rgb(255, 0, 0);
-  background-color: rgba(255, 0, 0, 0.288);
-}
-.step1 .inputerror{
-  text-align: left;
-  color: red;
-  margin-left: 20px;
-  height: 0px;
-}
-.step1 .stepintro{
+} */
+.step1 .stepintro {
   text-align: left;
   padding-left: 20px;
   font-family: 'Google Sans', arial, sans-serif;
@@ -9743,6 +9728,7 @@ h1 {
   font-weight: 400;
   line-height: 32px;
   padding-top: 16px;
+  margin-bottom: 20px;
 }
 @media (max-width: 767px) {
   .signupform {
@@ -9752,4 +9738,192 @@ h1 {
     margin: 0px 0px 0px -15px;
     width: 100vw;
   }
+}
+
+:root {
+  --omrs-color-ink-lowest-contrast: rgba(47, 60, 85, 0.18);
+  --omrs-color-ink-low-contrast: rgba(60, 60, 67, 0.3);
+  --omrs-color-ink-medium-contrast: rgba(19, 19, 21, 0.6);
+  --omrs-color-interaction: #1e4bd1;
+  --omrs-color-interaction-minus-two: rgba(73, 133, 224, 0.12);
+  --omrs-color-danger: #b50706;
+  --omrs-color-bg-low-contrast: #eff1f2;
+  --omrs-color-ink-high-contrast: #121212;
+  --omrs-color-bg-high-contrast: #ffffff;
+}
+/** END: Non Openmrs CSS **/
+div.omrs-input-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+  width: 85%;
+  height: 50px;
+}
+.omrs-input-underlined {
+  width: 100%;
+  margin: 20px 0px 0px 20px;
+}
+
+/* Input*/
+.omrs-input-underlined > input,
+.omrs-input-filled > input {
+  border: none;
+  border-bottom: 2px solid var(--omrs-color-ink-medium-contrast);
+  width: 100%;
+  height: 2rem;
+  font-size: 15px;
+  padding-left: 0.875rem;
+  line-height: 147.6%;
+  padding-top: 0.825rem;
+  padding-bottom: 0.5rem;
+  font-family: 'Google Sans', arial, sans-serif;
+}
+
+.omrs-input-underlined > input:focus,
+.omrs-input-filled > input:focus {
+  outline: none;
+}
+
+.omrs-input-underlined > .omrs-input-label,
+.omrs-input-filled > .omrs-input-label {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  line-height: 147.6%;
+  color: var(--omrs-color-ink-medium-contrast);
+  transition: top 0.2s;
+}
+
+.omrs-input-underlined > .omrs-input-helper,
+.omrs-input-filled > .omrs-input-helper {
+  font-size: 0.9375rem;
+  color: rgb(255, 95, 95);
+  letter-spacing: 0.0275rem;
+  margin: 0.125rem 0.875rem;
+}
+
+.omrs-input-underlined > input:hover,
+.omrs-input-filled > input:hover {
+  background: var(--omrs-color-interaction-minus-two);
+  border-color: var(--omrs-color-ink-high-contrast);
+}
+
+.omrs-input-underlined > input:focus + .omrs-input-label,
+.omrs-input-underlined > input:valid + .omrs-input-label {
+  top: 0;
+  font-size: 0.9375rem;
+  margin-bottom: 32px;
+}
+
+.omrs-input-underlined:not(.omrs-input-danger)
+  > input:focus
+  + .omrs-input-label,
+.omrs-input-filled:not(.omrs-input-danger) > input:focus + .omrs-input-label {
+  color: var(--omrs-color-interaction);
+}
+
+.omrs-input-underlined:not(.omrs-input-danger) > input:focus,
+.omrs-input-filled:not(.omrs-input-danger) > input:focus {
+  border-color: var(--omrs-color-interaction);
+}
+
+.omrs-input-underlined:not(.omrs-input-danger) > input:focus ~ svg,
+.omrs-input-filled:not(.omrs-input-danger) > input:focus ~ svg {
+  fill: var(--omrs-color-ink-high-contrast);
+}
+
+/** DANGER **/
+
+.omrs-input-underlined.omrs-input-danger > .omrs-input-label,
+.omrs-input-underlined.omrs-input-danger > .omrs-input-helper {
+  color: var(--omrs-color-danger);
+}
+
+.omrs-input-danger > input {
+  border-color: var(--omrs-color-danger);
+}
+
+.omrs-input-underlined > input {
+  background: var(--omrs-color-bg-high-contrast);
+}
+
+.buttonload {
+  background-color: rgb(35, 64, 128);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 3px;
+  position: absolute;
+}
+.buttonload.disabled {
+  background-color: rgb(184, 184, 184);
+}
+.privacypolicy {
+  margin: -17px 0px 0px 50px;
+}
+/* Add a right margin to each icon */
+.fa {
+  margin-left: -12px;
+  margin-right: 8px;
+}
+
+.check {
+  cursor: pointer;
+  position: relative;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+}
+.check:before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(34, 50, 84, 0.03);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.check svg {
+  position: relative;
+  z-index: 1;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #c8ccd4;
+  stroke-width: 1.5;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
+}
+.check svg path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 0;
+}
+.check svg polyline {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 66;
+}
+.check:hover:before {
+  opacity: 1;
+}
+.check:hover svg {
+  stroke: #4285f4;
+}
+#cbx:checked + .check svg {
+  stroke: #4285f4;
+}
+#cbx:checked + .check svg path {
+  stroke-dashoffset: 60;
+  transition: all 0.3s linear;
+}
+#cbx:checked + .check svg polyline {
+  stroke-dashoffset: 42;
+  transition: all 0.2s linear;
+  transition-delay: 0.15s;
 }
