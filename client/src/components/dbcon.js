@@ -104,10 +104,46 @@ export class dbcon extends Component {
 
   emailcheck (email, callback) {
     axios
-      .get(this.state.baseurl + '/account/emailcheck/' + email)
+      .get(
+        this.state.baseurl +
+          '/account/emailcheck/' +
+          String(email).toLowerCase()
+      )
       .then(res => {
         if (res.data.res === 'notexist') callback('notexist')
-        else if (res.data.res === 'exist')callback('exist')
+        else if (res.data.res === 'exist') callback('exist')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+  otpsend (email, callback) {
+    axios
+      .post(this.state.baseurl + '/email/mail/' + email)
+      .then(res => {
+        console.log(res)
+        callback(res.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  otpcheck (info, callback) {
+    const data = {
+      firstname: info.firstname,
+      lastname: info.lastname,
+      email: info.email,
+      password: info.password,
+      otp: info.otp
+    }
+    axios
+      .post(this.state.baseurl + '/email/check', data)
+      .then(res => {
+        console.log(res)
+        localStorage.setItem('token', res.data)
+        sessionStorage.setItem('token', res.data)
+        callback('ok')
       })
       .catch(error => {
         console.log(error)
@@ -225,7 +261,6 @@ export class dbcon extends Component {
         data: {
           firstname: profile.firstname,
           lastname: profile.lastname,
-          email: profile.email,
           profession: profile.profession,
           description: profile.description,
           website: profile.website,

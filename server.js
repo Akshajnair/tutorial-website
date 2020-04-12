@@ -27,12 +27,14 @@ const tokenRouter = require('./routes/token')
 const coursesRouter = require('./routes/courses')
 const images = require('./routes/imageup')
 const imagescompress = require('./routes/imagecompress')
+const email = require('./routes/email')
 
 app.use('/account', accountRouter)
 app.use('/token', tokenRouter)
 app.use('/tutorial', coursesRouter)
 app.use('/images', images)
 app.use('/imagescompress', imagescompress)
+app.use('/email', email)
 
 app.use(express.static('public'))
 

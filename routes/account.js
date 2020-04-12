@@ -7,7 +7,6 @@ router.route('/').get((req, res) => {
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err))
 })
-
 router.route('/add').post((req, res) => {
   const firstname = req.body.firstname
   const lastname = req.body.lastname
@@ -35,7 +34,6 @@ router.route('/add').post((req, res) => {
     })
     .catch(err => res.status(400).json('Error2: ' + err))
 })
-
 router.route('/update/:tokenid').post((req, res) => {
   Token.findById(req.params.tokenid)
     .then(token => {
@@ -56,7 +54,6 @@ router.route('/update/:tokenid').post((req, res) => {
           .then(accounts => {
             accounts.firstname = req.body.firstname
             accounts.lastname = req.body.lastname
-            accounts.email = req.body.email
             accounts.profession = req.body.profession
             accounts.description = req.body.description
             accounts.dplink = req.body.dplink
@@ -75,7 +72,6 @@ router.route('/update/:tokenid').post((req, res) => {
     })
     .catch(err => res.json('invalid'))
 })
-
 router.route('/maketrainer/:id').post((req, res) => {
   Account.findById(req.params.id)
     .then(accounts => {
@@ -87,13 +83,11 @@ router.route('/maketrainer/:id').post((req, res) => {
     })
     .catch(err => res.status(400).json('Error: ' + err))
 })
-
 router.route('/:id').get((req, res) => {
   Account.findById(req.params.id)
     .then(accounts => res.json(accounts))
     .catch(err => res.status(400).json('Error: ' + err))
 })
-
 router.route('/user/:id').get((req, res) => {
   Account.findById(req.params.id)
     .then(accounts => {
@@ -114,7 +108,6 @@ router.route('/user/:id').get((req, res) => {
     })
     .catch(err => res.status(400).json('Error'))
 })
-
 router.route('/trainer/:id').get((req, res) => {
   Account.findById(req.params.id)
     .then(accounts => {
@@ -152,13 +145,11 @@ router.route('/email/:email/:pass').get((req, res) => {
     })
     .catch(err => res.json({ res: 'wrong' }))
 })
-
 router.route('/:id').delete((req, res) => {
   Account.findByIdAndDelete(req.params.id)
     .then(() => res.json('accounts deleted.'))
     .catch(err => res.status(400).json('Error: ' + err))
 })
-
 router.route('/token/:id').get((req, res) => {
   Token.findById(req.params.id)
     .then(token => {
@@ -198,7 +189,6 @@ router.route('/token/:id').get((req, res) => {
     })
     .catch(err => res.status(400).json('nodata'))
 })
-
 router.route('/profilefetch/:accountid/:tokenid').get((req, res) => {
   const accountid = req.params.accountid
   const tokenid = req.params.tokenid
@@ -224,7 +214,6 @@ router.route('/profilefetch/:accountid/:tokenid').get((req, res) => {
               const profile = {
                 firstname: accounts.firstname,
                 lastname: accounts.lastname,
-                email: accounts.email,
                 profession: accounts.profession,
                 description: accounts.description,
                 dplink: accounts.dplink,

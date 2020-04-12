@@ -10,7 +10,6 @@ export default class Profile_edit extends Component {
     this.state = {
       firstname: prop.firstname,
       lastname: prop.lastname,
-      email: prop.email,
       profession: prop.profession,
       description: prop.description,
       website: prop.website,
@@ -37,7 +36,6 @@ export default class Profile_edit extends Component {
     const profile = {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
-      email: this.state.email,
       profession: this.state.profession,
       description: this.state.description,
       website: this.state.website,
@@ -205,19 +203,6 @@ export default class Profile_edit extends Component {
                   placeholder='Enter your Youtube page Link'
                   onChange={this.onChange}
                   name='youtube'
-                />
-              </div>
-            </div>
-            <div class='form-group'>
-              <label class='col-lg-3 control-label'>Email:</label>
-              <div class='col-lg-8'>
-                <input
-                  class='form-control'
-                  type='text'
-                  value={this.state.email}
-                  placeholder='Enter your Email'
-                  onChange={this.onChange}
-                  name='email'
                 />
               </div>
             </div>
