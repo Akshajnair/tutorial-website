@@ -253,7 +253,6 @@ export default class Profile_edit extends Component {
                   labelStyles={{ fontSize: '20px' }}
                 />
               </div>
-              {/* <button type='submit' class="btn btn-primary">UPLOAD</button> */}
             </form>
           </div>
         </div>

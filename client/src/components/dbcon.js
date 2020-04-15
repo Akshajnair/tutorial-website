@@ -287,6 +287,37 @@ export class dbcon extends Component {
       }
     }
   }
+  signupupdatewithtoken (profile, callback) {
+    const tokenid =
+      sessionStorage.getItem('token') || localStorage.getItem('token') || 'null'
+    if (!(tokenid === 'null')) {
+      const options = {
+        url: this.state.baseurl + '/account/signupupdate/' + tokenid,
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        data: {
+          profession: profile.profession,
+          description: profile.description,
+          website: profile.website,
+          facebook: profile.facebook,
+          twitter: profile.twitter,
+          linkedin: profile.linkedin,
+          youtube: profile.youtube,
+        }
+      }
+        axios(options)
+          .then(res => {
+            callback(res)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
+    
+  }
   imageupload (image, callback) {
     const tokenid =
       sessionStorage.getItem('token') || localStorage.getItem('token')
@@ -299,15 +330,16 @@ export class dbcon extends Component {
     axios
       .post(this.state.baseurl + '/images/add/' + tokenid, fd, options)
       .then(res => {
+        const res1=res
         axios
           .post(
             this.state.baseurl +
               '/imagescompress/' +
-              window.location.pathname.split('/')[2],
+              tokenid,
             {}
           )
           .then(res => {
-            callback(res)
+            callback(res1)
           })
           .catch(error => {
             console.log(error)

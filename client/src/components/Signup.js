@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import dbcon from './dbcon'
+import ImageUploader from 'react-images-upload'
 
 export default class Signup extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      firstname: 'yolo',
+      firstname: '',
       lastname: '',
       email: '',
       password: '',
@@ -29,7 +30,7 @@ export default class Signup extends Component {
       button2load: '',
       button1: 'disabled',
       button2: '',
-      step: 3,
+      step: 1,
       res: '',
       rpa: ''
     }
@@ -43,12 +44,25 @@ export default class Signup extends Component {
     this.step2back = this.step2back.bind(this)
     this.step4back = this.step4back.bind(this)
     this.step5back = this.step5back.bind(this)
+    this.onDrop = this.onDrop.bind(this)
   }
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
     if (e.target.name === 'email') {
       this.onemailchange(e.target.value)
     }
+  }
+  dp () {
+    if (this.state.dplink === '')
+      return window.location.origin + '/img/default_user.png'
+    else return this.state.dplink
+  }
+  onDrop (picture) {
+    const this1 = this
+    dbcon.imageupload(picture[0], function (response) {
+      console.log(response)
+      this1.setState({ dplink: response.data.imageUrl })
+    })
   }
   onemailchange (email) {
     const this1 = this
@@ -207,10 +221,31 @@ export default class Signup extends Component {
     this.setState({ step: 3 })
   }
   step5next () {
-    this.setState({ step: 5 })
+    const this1 = this
+    this.setState({
+      button2load: 'fa fa-circle-o-notch fa-spin',
+      button2: 'disabled'
+    })
+    const prof = this.state
+    const profile = {
+      profession: prof.profession,
+      description: prof.description,
+      website: prof.website,
+      facebook: prof.facebook,
+      twitter: prof.twitter,
+      linkedin: prof.linkedin,
+      youtube: prof.youtube
+    }
+    dbcon.signupupdatewithtoken(profile, function (res) {
+      console.log(res)
+      this1.setState({ step: 6 })
+    })
   }
   step5back () {
     this.setState({ step: 4 })
+  }
+  redirect () {
+    window.location = window.location.origin
   }
   step1 () {
     return (
@@ -418,7 +453,7 @@ export default class Signup extends Component {
               onChange={this.onChange}
               required
             />
-            <span class='omrs-input-label'>Website</span>
+            <span class='omrs-input-label'>Website (https://example.com)</span>
           </label>
         </div>
         <button class={'buttonload '} onClick={this.step5back}>
@@ -440,7 +475,9 @@ export default class Signup extends Component {
               onChange={this.onChange}
               required
             />
-            <span class='omrs-input-label'>Facebook</span>
+            <span class='omrs-input-label'>
+              Facebook (https://www.facebook.com/username)
+            </span>
           </label>
         </div>
         <div className='omrs-input-group'>
@@ -452,7 +489,9 @@ export default class Signup extends Component {
               onChange={this.onChange}
               required
             />
-            <span class='omrs-input-label'>Twitter</span>
+            <span class='omrs-input-label'>
+              Twitter (https://twitter.com/username)
+            </span>
           </label>
         </div>
         <div className='omrs-input-group'>
@@ -464,7 +503,9 @@ export default class Signup extends Component {
               onChange={this.onChange}
               required
             />
-            <span class='omrs-input-label'>Linkedin</span>
+            <span class='omrs-input-label'>
+              Linkedin (https://in.linkedin.com/in/username)
+            </span>
           </label>
         </div>
         <div className='omrs-input-group'>
@@ -476,7 +517,9 @@ export default class Signup extends Component {
               onChange={this.onChange}
               required
             />
-            <span class='omrs-input-label'>Youtube</span>
+            <span class='omrs-input-label'>
+              Youtube (https://www.youtube.com/channel/example)
+            </span>
           </label>
         </div>
         <button class={'buttonloadprev '} onClick={this.step4back}>
@@ -493,17 +536,45 @@ export default class Signup extends Component {
   }
   step5 () {
     return (
-      <div className='step3'>
+      <div className='step5'>
         <div className='stepintro'>Add your Profile Picture</div>
+        <div className='usersignupthumb'>
+          <img src={this.dp()} alt='' />
+          <form onSubmit={this.upload}>
+            <div className='imageupload'>
+              <ImageUploader
+                withIcon={false}
+                buttonText='Upload'
+                buttonClassName={''}
+                onChange={this.onDrop}
+                imgExtension={['.jpg', '.jpeg', '.png']}
+                maxFileSize={5242880}
+                singleImage={true}
+                withLabel={true}
+                label={'max image size : 5MB'}
+                labelStyles={{ fontSize: '20px' }}
+              />
+            </div>
+          </form>
+        </div>
         <button class={'buttonloadprev '} onClick={this.step5back}>
           Back
         </button>
         <button
           class={'buttonload ' + this.state.button2}
           onClick={this.step5next}
+          disabled={this.state.button2}
         >
-          Next
+          <i class={this.state.button2load}></i>Next
         </button>
+      </div>
+    )
+  }
+  step6 () {
+    return (
+      <div className='step6'>
+        <h1>All done setting up<br/><i class="fa fa-check" aria-hidden="true" style={{color:'#7041de'}}></i></h1>
+        <button class={'buttonload '} onClick={this.redirect}>Take Me to Home</button>
       </div>
     )
   }
@@ -513,6 +584,7 @@ export default class Signup extends Component {
     if (this.state.step === 3) return this.step3()
     if (this.state.step === 4) return this.step4()
     if (this.state.step === 5) return this.step5()
+    if (this.state.step === 6) return this.step6()
   }
   render () {
     return (

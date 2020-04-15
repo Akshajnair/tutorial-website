@@ -45,48 +45,41 @@ const accountSchema = new Schema(
     profession: {
       type: String,
       required: false,
-      trim: true,
-      minlength: 3
+      trim: true
     },
     description: {
       type: String,
       required: false,
-      trim: true,
-      minlength: 10
+      trim: true
     },
     language: {
       type: String,
-      trim: true,
+      trim: true
     },
     website: {
       type: String,
       required: false,
-      trim: true,
-      minlength: 3
+      trim: true
     },
     twitter: {
       type: String,
       required: false,
-      trim: true,
-      minlength: 3
+      trim: true
     },
     facebook: {
       type: String,
       required: false,
-      trim: true,
-      minlength: 3
+      trim: true
     },
     linkedin: {
       type: String,
       required: false,
-      trim: true,
-      minlength: 3
+      trim: true
     },
     youtube: {
       type: String,
       required: false,
       trim: true,
-      minlength: 3
     }
   },
   {

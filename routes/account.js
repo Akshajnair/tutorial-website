@@ -56,7 +56,41 @@ router.route('/update/:tokenid').post((req, res) => {
             accounts.lastname = req.body.lastname
             accounts.profession = req.body.profession
             accounts.description = req.body.description
-            accounts.dplink = req.body.dplink
+            accounts.website = req.body.website
+            accounts.twitter = req.body.twitter
+            accounts.facebook = req.body.facebook
+            accounts.linkedin = req.body.linkedin
+            accounts.youtube = req.body.youtube
+            accounts
+              .save()
+              .then(() => res.json('updated'))
+              .catch(err => res.json('invalid'))
+          })
+          .catch(err => res.json('invalid'))
+      }
+    })
+    .catch(err => res.json('invalid'))
+})
+router.route('/signupupdate/:tokenid').post((req, res) => {
+  Token.findById(req.params.tokenid)
+    .then(token => {
+      const a = new Date(token.createdAt),
+        b = new Date()
+      const date =
+        a.getFullYear() * 100000 +
+        (a.getMonth() + 1) * 10000 +
+        a.getDate() * 100 +
+        a.getHours()
+      const datenow =
+        b.getFullYear() * 100000 +
+        (b.getMonth() + 1) * 10000 +
+        b.getDate() * 100 +
+        b.getHours()
+      if (token.expired == false && date + 200 > datenow) {
+        Account.findById(token.accountid)
+          .then(accounts => {
+            accounts.profession = req.body.profession
+            accounts.description = req.body.description
             accounts.website = req.body.website
             accounts.twitter = req.body.twitter
             accounts.facebook = req.body.facebook
