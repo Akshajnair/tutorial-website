@@ -9908,10 +9908,7 @@ div.omrs-input-group {
   margin: -17px 0px 0px 50px;
 }
 /* Add a right margin to each icon */
-.fa {
-  margin-left: -12px;
-  margin-right: 8px;
-}
+
 
 .check {
   cursor: pointer;

@@ -59,9 +59,17 @@ export default class Signup extends Component {
   }
   onDrop (picture) {
     const this1 = this
+    this.setState({
+      button2load: 'fa fa-circle-o-notch fa-spin',
+      button2: 'disabled'
+    })
     dbcon.imageupload(picture[0], function (response) {
       console.log(response)
       this1.setState({ dplink: response.data.imageUrl })
+      this.setState({
+        button2load: '',
+        button2: ''
+      })
     })
   }
   onemailchange (email) {
@@ -526,7 +534,7 @@ export default class Signup extends Component {
           Back
         </button>
         <button
-          class={'buttonload ' + this.state.button2}
+          class={'buttonload'}
           onClick={this.step4next}
         >
           Next
