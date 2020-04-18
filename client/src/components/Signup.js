@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import dbcon from './dbcon'
 import ImageUploader from 'react-images-upload'
+import {Link} from 'react-router-dom'
 
 export default class Signup extends Component {
   constructor (props) {
@@ -370,6 +371,7 @@ export default class Signup extends Component {
             I agree to terms and Privacy Policy
           </div>
         </div>
+        <div className='alreadyaccountbtn'>Already had an account?  <Link to='/login'>Login here</Link></div>
         <button
           class={'buttonload ' + this.state.button1}
           onClick={this.step1next}

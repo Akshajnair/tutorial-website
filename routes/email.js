@@ -34,15 +34,17 @@ router.route('/mail/:email').post((req, res) => {
     }
   })
   const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
+    host: 'smtp.akshaj.online',
     port: 587,
+    secureConnection: false,
+    requireTLS: true,
     auth: {
-      user: 'forrest.schoen@ethereal.email',
-      pass: 'Txy3aSedV68wdNTq4y'
+      user: 'noreply@akshaj.online',
+      pass: 'YPEBJq*O6'
     }
   })
   const mailOptions = {
-    from: `forrest.schoen@ethereal.email`,
+    from: `noreply@akshaj.online`,
     to: '' + email,
     subject: `yolo`,
     text: ' ' + otpkey,
@@ -73,7 +75,10 @@ router.route('/check').post((req, res) => {
         b.getDate() * 100 +
         b.getHours()
       // res.json(otp)
-      if (parseInt(otp.otpkey) === parseInt(req.body.otp) && date + 100 > datenow) {
+      if (
+        parseInt(otp.otpkey) === parseInt(req.body.otp) &&
+        date + 100 > datenow
+      ) {
         const firstname = req.body.firstname
         const lastname = req.body.lastname
         const email = req.body.email

@@ -9901,8 +9901,18 @@ div.omrs-input-group {
   border-radius: 3px;
   position: absolute;
 }
+
 .buttonload.disabled {
   background-color: rgb(184, 184, 184);
+}
+.alreadyaccountbtn{
+  font-size: 16px;
+  bottom: 20px;
+  left: 20px;
+  position: absolute;
+}
+.alreadyaccountbtn link{
+  color: #a24ded;
 }
 .privacypolicy {
   margin: -17px 0px 0px 50px;

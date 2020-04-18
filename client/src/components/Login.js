@@ -15,18 +15,6 @@ export default class Login extends Component {
       res: '',
       rpa: ''
     }
-    dbcon.prevlink1(function (response) {
-      console.log(props)
-    })
-
-    this.overlayon = this.overlayon.bind(this)
-    this.overlayoff = this.overlayoff.bind(this)
-  }
-  overlayon () {
-    this.setState({ rpa: 'right-panel-active' })
-  }
-  overlayoff () {
-    this.setState({ rpa: '' })
   }
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
@@ -43,21 +31,6 @@ export default class Login extends Component {
         } else window.location = '/'
       }
     )
-  }
-
-  onsubmithandler = e => {
-    var this1 = this
-    e.preventDefault()
-    const data = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      email: this.state.email,
-      password: this.state.password,
-      confirmpassword: this.state.confirmpassword
-    }
-    dbcon.signup(data, function (res) {
-      this1.setState({ res: res })
-    })
   }
 
   render () {
