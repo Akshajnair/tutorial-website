@@ -140,10 +140,12 @@ export class dbcon extends Component {
     axios
       .post(this.state.baseurl + '/email/check', data)
       .then(res => {
-        console.log(res)
+        console.log(res.data.res)
+        if(res.data.res!=='wrong'){
         localStorage.setItem('token', res.data)
         sessionStorage.setItem('token', res.data)
-        callback('ok')
+        callback('ok')}
+        else{callback('wrong')}
       })
       .catch(error => {
         console.log(error)

@@ -34,19 +34,19 @@ router.route('/mail/:email').post((req, res) => {
     }
   })
   const transporter = nodemailer.createTransport({
-    host: 'smtp.akshaj.online',
+    host: 'smtp.gmail.com',
     port: 587,
-    secureConnection: false,
+    secure: false,
     requireTLS: true,
     auth: {
-      user: 'noreply@akshaj.online',
-      pass: 'YPEBJq*O6'
+        user: 'developer.akshaj@gmail.com',
+        pass: 'GNair_is_1E'
     }
   })
   const mailOptions = {
-    from: `noreply@akshaj.online`,
+    from: `developer.akshaj@gmail.com`,
     to: '' + email,
-    subject: `yolo`,
+    subject: `OTP`,
     text: ' ' + otpkey,
     replyTo: `1234@gmail.com`
   }
